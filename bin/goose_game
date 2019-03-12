@@ -1,4 +1,6 @@
-require_relative 'boot.rb'
+#!/usr/bin/env ruby
+
+require_relative '../lib/boot.rb'
 
 class GooseGame
   def initialize
@@ -10,7 +12,7 @@ class GooseGame
       request = gets.chomp
       case
         when request == 'exit' then command = Exit.new
-        when request.start_with?('add player') then command = AddPlayer.new(request)
+        when request.start_with?('add player') then command = AddPlayer.new(command: request, board: @board)
         else command = Help.new
       end
       puts command.execute
